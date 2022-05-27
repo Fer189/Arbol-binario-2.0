@@ -31,11 +31,35 @@ void addNode(Node<T> *&tree, int value) {
     }
 }
 
+template<typename T>
+void printTree(Node<T> *&tree, int adder) {
+    if(tree == nullptr) {
+        return;
+    }
+    else {
+        Node<T>* tree2 = tree->getRight();
+        printTree(tree2, adder + 1);
+        for(int i = 0; i < adder; i++) {
+            cout << "   ";
+        }
+        cout << tree->getValue() << endl;
+        Node<T>* tree3 = tree->getLeft();
+        printTree<T>(tree3, adder + 1);
+    }
+}
 
 int main() {
     Node<int> *tree = nullptr;
-    addNode(tree, 1);
+    addNode(tree, 10);
     addNode(tree, 2);
+    addNode(tree, 5);
+    addNode(tree, 7);
+    addNode(tree, 9);
+    addNode(tree, 4);
+    addNode(tree, 12);
+    addNode(tree, 11);
     addNode(tree, 3);
+    int adder = 0;
+    printTree(tree, adder);
     return 0;
 }
