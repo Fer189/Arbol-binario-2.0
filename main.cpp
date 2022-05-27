@@ -3,9 +3,9 @@
 using namespace std;
 
 
-
-void addNode(Node *&tree, int value, char position) {
-    Node *newNode = new Node(value);
+template <typename T>
+void addNode(Node<T> *&tree, int value, char position) {
+    Node<T> *newNode = new Node<T>(value);
     if(tree == nullptr) {
         tree = newNode;
     }
@@ -17,7 +17,7 @@ void addNode(Node *&tree, int value, char position) {
                 tree->setLeft(newNode);
             }
             else {
-                Node* nextBranch = tree->getLeft();
+                Node<T>* nextBranch = tree->getLeft();
                 addNode(nextBranch, value, position); 
             }
             break;
@@ -26,7 +26,7 @@ void addNode(Node *&tree, int value, char position) {
                 tree->setRight(newNode);
             }
             else {
-                Node* nextBranch = tree->getRight();
+                Node<T>* nextBranch = tree->getRight();
                 addNode(nextBranch, value, position); 
             }
             break;
@@ -36,12 +36,19 @@ void addNode(Node *&tree, int value, char position) {
 
 
 int main() {
-    Node *tree = nullptr;
-    addNode(tree, 9, 'l');
-    addNode(tree, 8, 'l');
-    addNode(tree, 7, 'l');
+    Node<char> *tree = nullptr;
+    addNode(tree, 'o', 'l');
+    addNode(tree, 'i', 'l');
+    addNode(tree, 'q', 'l');
+    Node<int> *tree2 = nullptr;
+    addNode(tree2, 1, 'l');
+    addNode(tree2, 2, 'l');
+    addNode(tree2, 3, 'l');
     cout << tree->getValue() << endl;
     cout << tree->getLeft()->getValue() << endl;
     cout << tree->getLeft()->getLeft()->getValue() << endl;
+    cout << tree2->getValue() << endl;
+    cout << tree2->getLeft()->getValue() << endl;
+    cout << tree2->getLeft()->getLeft()->getValue() << endl;
     return 0;
 }

@@ -1,8 +1,10 @@
 #pragma once
 
+
+template <typename T>
 class Node {
     public:
-    Node(int value = 0, Node* left = nullptr, Node* right = nullptr) {
+    Node(T value = 0, Node* left = nullptr, Node* right = nullptr) {
         this -> left = left;
         this -> right = right;
         this -> value = value;
@@ -22,11 +24,11 @@ class Node {
     Node* getRight() {
         return this -> right;
     }
-    int getValue() {
+    T getValue() {
         return this -> value;
     }
     private:
     Node* left;
     Node* right;
-    int value;
+    T value;
 };
