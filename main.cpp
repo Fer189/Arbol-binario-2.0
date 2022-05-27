@@ -1,65 +1,37 @@
 #include "Node.h"
+#include "BinaryTree.h"
 #include <iostream>
 using namespace std;
+Node<int>* tree1 = nullptr;
+BinaryTree<int> binaryTree;
 
-
-template <typename T>
-void addNode(Node<T> *&tree, int value) {
-    Node<T> *newNode = new Node<T>(value);
-    if(tree == nullptr) {
-        tree = newNode;
-    }
-    else {
-        if(value < tree->getValue()) {
-            if(tree->getLeft() == nullptr) {
-                tree->setLeft(newNode);
-            }
-            else {
-                Node<T>* nextBranch = tree->getLeft();
-                addNode(nextBranch, value);
-            }
-        }
-        else {
-            if(tree->getRight() == nullptr) {
-                tree->setRight(newNode);
-            }
-            else {
-                Node<T>* nextBranch = tree->getRight();
-                addNode(nextBranch, value);
-            }
+void menu() {
+    int adder = 0;
+    int input = 0;
+    int value;
+    do {
+        cout << "1. Ingresar un nodo" << endl;
+        cout << "2. Imprimir arbol binario" << endl;
+        cout << "3. Salir" << endl;
+        cin >> input;
+        switch(input) {
+            case 1:
+            cout << "Ingrese un valor: " << endl;
+            cin >> value;
+            binaryTree.addNode(tree1, value);
+            system("cls");
+            break;
+            case 2:
+            system("cls");
+            binaryTree.printTree(tree1, adder);
+            system("pause");
+            break;
         }
     }
-}
-
-template<typename T>
-void printTree(Node<T> *&tree, int adder) {
-    if(tree == nullptr) {
-        return;
-    }
-    else {
-        Node<T>* tree2 = tree->getRight();
-        printTree(tree2, adder + 1);
-        for(int i = 0; i < adder; i++) {
-            cout << "   ";
-        }
-        cout << tree->getValue() << endl;
-        Node<T>* tree3 = tree->getLeft();
-        printTree<T>(tree3, adder + 1);
-    }
+    while(input != 3);
 }
 
 int main() {
-    Node<int> *tree = nullptr;
-    addNode(tree, 10);
-    addNode(tree, 2);
-    addNode(tree, 5);
-    addNode(tree, 7);
-    addNode(tree, 9);
-    addNode(tree, 4);
-    addNode(tree, 12);
-    addNode(tree, 11);
-    addNode(tree, 3);
-    int adder = 0;
-    printTree(tree, adder);
+    menu();
     return 0;
 }
